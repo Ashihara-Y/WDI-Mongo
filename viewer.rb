@@ -4,10 +4,11 @@ require 'roo'
 #require 'msgpack'
 #require 'oj'
 require 'mongoid'
+require 'mongoidsearch'
 require 'yajl/json_gem'
 #require 'iconv'
 require 'open-uri'
-#require "sinatra/reloader" if development?
+require "sinatra/reloader" if development?
 require 'matrix'
 
 Mongoid.load!("./mongoid.yml", :development)
@@ -92,14 +93,14 @@ class Wdi_country
 end
 
 get '/' do
-  @n = Downloaditem.count #for current accumulated sheet number of all downloaded files
-  @n_series = Series.count
+  @n = Wdi_facts.count #for current accumulated sheet number of all downloaded files
+  @n_series = Wdi_series.count
   erb :index
 end
 
 get '/index' do
-  @n = Downloaditem.count #for current accumulated sheet number of all downloaded files
-  @n_series = Series.count
+  @n = Wdi_facts.count #for current accumulated sheet number of all downloaded files
+  @n_series = Wdi_series.count
   erb :index
 end
 
