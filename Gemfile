@@ -10,3 +10,10 @@ gem "google_drive"
 gem "yajl-ruby"
 
 gem "thin"
+gem "rake"
+
+group 'test' do
+	gem 'foreman'
+	gem 'rspec'
+	gem 'rack-test'
+end
