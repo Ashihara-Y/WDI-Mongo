@@ -17,7 +17,6 @@ Mongoid.load!("./mongoid.yml", :development)
 class Wdi_fact
   include Mongoid::Document
   #store_in collection: "downloaditem"
-  field :_id, type: String
   field :country_name, type: String
   field :country_code, type: String
   field :series_name, type: String
@@ -27,7 +26,6 @@ end
 
 class Wdi_series
   include Mongoid::Document
-  field :_id, type: String
   field :series_code, type: String
   field :topic, type: String
   field :dataset, type: String
@@ -57,7 +55,6 @@ end
 
 class Wdi_country
   include Mongoid::Document
-  field :_id, type: String
   field :country_code, type: String
   field :short_name, type: String
   field :table_name, type: String
@@ -93,13 +90,13 @@ class Wdi_country
 end
 
 get '/' do
-  @n = Wdi_facts.count #for current accumulated sheet number of all downloaded files
+  @n = Wdi_fact.count #for current accumulated sheet number of all downloaded files
   @n_series = Wdi_series.count
   erb :index
 end
 
 get '/index' do
-  @n = Wdi_facts.count #for current accumulated sheet number of all downloaded files
+  @n = Wdi_fact.count #for current accumulated sheet number of all downloaded files
   @n_series = Wdi_series.count
   erb :index
 end
