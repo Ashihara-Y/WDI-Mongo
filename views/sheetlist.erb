@@ -1,0 +1,18 @@
+<span>
+<table class="table table-bordered table-condensed">
+<thead>
+<tr>
+<th>Downloded Book Name</th>
+<th>Included Sheet Name</th>
+</tr>
+</thead>
+<tbody>
+<% @list_array.each do |list| %>
+<tr>
+  <td><%= list.book_name %></td>
+  <td><a href="/sheetview?d_item_id=<%= list.d_item_id %>&sheet_id=<%= list.sheet_id %>"><%= list.sheet_name2 %></a></td>
+</tr>  
+<% end %>
+</tbody>
+</table>
+</span>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DataClouds FileViewer Test ver.0.01 14/02/2014</title>
+
+<!-- jQuery via Google + local fallback, see h5bp.com -->
+<script src="/js/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+<script src="/js/jquery.handsontable.full.js"></script>
+<script src="/js/jquery.flot.min.js"></script>
+<script src="/js/jquery.colorhelpers.min.js"></script>
+<script src="/js/jquery.flot.canvas.min.js"></script>
+<script src="/js/jquery.flot.categories.min.js"></script>
+<script src="/js/jquery.flot.crosshair.min.js"></script>
+<script src="/js/jquery.flot.errorbars.min.js"></script>
+<script src="/js/jquery.flot.fillbetween.min.js"></script>
+<script src="/js/jquery.flot.image.min.js"></script>
+<script src="/js/jquery.flot.navigate.min.js"></script>
+<script src="/js/jquery.flot.pie.min.js"></script>
+<script src="/js/jquery.flot.resize.min.js"></script>
+<script src="/js/jquery.flot.selection.min.js"></script>
+<script src="/js/jquery.flot.stack.min.js"></script>
+<script src="/js/jquery.flot.symbol.min.js"></script>
+<script src="/js/jquery.flot.threshold.min.js"></script>
+<script src="/js/jquery.flot.time.min.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/js/excanvas.min.js"></script><![endif]-->
+<link rel="stylesheet" media="screen" href="/css/jquery.handsontable.full.css">
+
+
+<!-- Styles -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<style>
+    body {
+    padding-top: 60px; /* When using the navbar-top-fixed */
+    }
+
+    .center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+    }
+
+    .centercontents {
+    text-align: center !important;
+    }
+
+    .alignrightcontents {
+    text-align: right !important;
+    }
+
+    body
+    {
+    background-image:url('/img/escheresque_ste.png');
+
+    }
+</style>
+
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/index">DataClouds.net FileViewAid</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+<!--           <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li> -->
+          <li><a href="/sheetlist">Sheets: <%= @n %></a></li>
+          <li><a href="/serieslist">Series: <%= @n_series %></a></li>
+<!--           <li><a href="/genres">Genres</a></li> -->
+<!--          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">Genres <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">Library <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/artists/add">Add Artist</a></li>
+              <li><a href="/artists/drop">Drop Artist</a></li>
+              <li><a href="/songs/add">Add Song</a></li>
+              <li><a href="/songs/drop">Drop Song</a></li>
+              <li><a href="/genres">Add Genre</a></li>
+            </ul>
+          </li>
+          <li><a href="/random">Shuffle</a></li>
+        </ul> -->
+        <form class="navbar-search" action="/search" method="GET">
+          <input type="text" class="search-query span4" placeholder="Search" name="search">
+        </form>
+      </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+  </div><!-- /.navbar-inner -->
+</div><!-- /.navbar -->
+<%= yield %>
+
+<!-- Bootstrap jQuery Plugins, compiled and minified -->
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

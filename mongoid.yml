@@ -1,0 +1,17 @@
+development:
+  sessions:
+    default:
+      database: wdi_test
+      hosts: 
+        - ds055489-a0.mongolab.com:55489
+      username: broom
+      password: 1871pven
+ 
+production:
+  sessions:
+    default:
+      database: wdi_test
+      hosts: 
+        - ds055489-a0.mongolab.com:55489
+      username: broom
+      password: 1871pven

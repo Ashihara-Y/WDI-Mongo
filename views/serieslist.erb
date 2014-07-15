@@ -1,0 +1,21 @@
+<span>
+<table class="table table-bordered table-condensed">
+<thead>
+<tr>
+  <th>Book Name</th>
+  <th>Sheet Name</th>
+  <th>Series Name</th>
+  <th>Country Name</th>
+</tr>
+</thead><tbody>
+<% @series.each do |item| %>
+<tr>
+  <td><%= item.d_item_id %></td>
+  <td><%= item.sheet_id %></td>
+  <td><%= item.series_id %></td>
+  <td><a href="/detail?d_item_id=<%= item.d_item_id %>&sheet_id=<%= item.sheet_id %>&series_id=<%= item.series_id %>&country_id=<%= item.country_id %>"><%= item.country_name %></a></td>
+</tr>  
+<% end %>
+</tbody>
+</table>
+</span>
