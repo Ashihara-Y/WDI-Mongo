@@ -22,6 +22,11 @@ class Wdi_fact
   field :series_name, type: String
   field :series_code, type: String
   field :content, type: Array
+
+  embeds_one :Wdi_series
+  embeds_one :Wdi_country
+
+  index({ country_code: 1, series_code: 1 }, { unique: true, name: "c_s_code_index", backgroud: true })
 end
 
 class Wdi_series
@@ -51,6 +56,12 @@ class Wdi_series
   field :related_source, type: String
   field :other_web_links, type: String
   field :related_indicators, type: String
+
+  embedded_in :Wdi_facts
+
+  index({ series_code: 1 }, { name: "s_code_index" })
+  index({ topic: 1 }, { name: "topic_index" })
+  index({ indicator_name: 1 }, { name: "s_name_index" })
 end
 
 class Wdi_country
@@ -87,6 +98,15 @@ class Wdi_country
   field :latest_industrial_data, type: String
   field :latest_trade_data, type: String
   field :latest_water_withdrawal_data, type: String
+
+  embedded_in :Wdi_facts
+
+  index({ country_code: 1, short_name: 1, table_name: 1, long_name: 1 }, { unique: true, name: "c_name_index" })
+  index({ country_code: 1, two_alpha_code: 1, wb2_code: 1 }, { unique: true, name: "c_code_index" })
+  index({ region: 1 }, { name: "region_index" })
+  index({ income_group: 1 }, { name: "income_index" })
+  index({ international_memberships: 1 }, { name: "membership_index" })
+  index({ lending_category: 1 }, { name: "lending_index" })
 end
 
 get '/' do
