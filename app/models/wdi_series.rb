@@ -30,7 +30,7 @@ class WdiSeries
 
   embedded_in :Wdi_facts
 
-  index({ series_code: 1 }, { name: 's_code_index' })
-  index({ topic: 1 }, { name: 'topic_index' })
-  index({ indicator_name: 1 }, { name: 's_name_index' })
+#  index({ series_code: 1 }, { name: 's_code_index' })
+#  index({ topic: 1 }, { name: 'topic_index' })
+#  index({ indicator_name: 1 }, { name: 's_name_index' })
 end

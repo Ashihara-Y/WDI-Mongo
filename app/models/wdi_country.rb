@@ -35,12 +35,12 @@ class WdiCountry
 
   embedded_in :Wdi_facts
 
-  index({ country_code: 1, short_name: 1, table_name: 1, long_name: 1 }, 
-        { unique: true, name: 'c_name_index' })
-  index({ country_code: 1, two_alpha_code: 1, wb2_code: 1 }, 
-        { unique: true, name: 'c_code_index' })
-  index({ region: 1 }, { name: 'region_index' })
-  index({ income_group: 1 }, { name: 'income_index' })
-  index({ international_memberships: 1 }, { name: 'membership_index' })
-  index({ lending_category: 1 }, { name: 'lending_index' })
+#  index({ country_code: 1, short_name: 1, table_name: 1, long_name: 1 }, 
+#        { unique: true, name: 'c_name_index' })
+#  index({ country_code: 1, two_alpha_code: 1, wb2_code: 1 }, 
+#        { unique: true, name: 'c_code_index' })
+#  index({ region: 1 }, { name: 'region_index' })
+#  index({ income_group: 1 }, { name: 'income_index' })
+#  index({ international_memberships: 1 }, { name: 'membership_index' })
+#  index({ lending_category: 1 }, { name: 'lending_index' })
 end
