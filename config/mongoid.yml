@@ -10,8 +10,8 @@ development:
       # of host:port pairs. (required)
       hosts:
         - localhost:27017
-      username: broom
-      password: 1871PVEN+
+      username: 
+      password: 
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -63,8 +63,8 @@ test:
       database: DC_test
       hosts:
         - localhost:27017
-      username: broom
-      password: 1871PVEN+
+      username: 
+      password: 
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
