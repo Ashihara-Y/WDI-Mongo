@@ -22,4 +22,6 @@ class WdiFact
   index "wdi_country.lending_category" => 1
   index "wdi_series.indicator_name" => 1
   index "wdi_series.topic" => 1
+
+  search_in :series_name, :wdi_series => :long_definition
 end
