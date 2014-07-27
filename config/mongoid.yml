@@ -10,8 +10,8 @@ development:
       # of host:port pairs. (required)
       hosts:
         - ds055489-a0.mongolab.com:55489
-      username: owilde
-      password: 1854owwb
+      username: 
+      password: 
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -63,8 +63,8 @@ test:
       database: wdi_test
       hosts:
         - ds055489-a0.mongolab.com:55489
-      username: owilde
-      password: 1854owwb
+      username: 
+      password: 
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
