@@ -9,7 +9,7 @@ class WdiFact
   has_many :wdi_country_series
   has_many :wdi_footnotes
 
-  embeds_one :Wdi_series
+  has_one :Wdi_series
   embeds_one :Wdi_country
 
   index({ country_code: 1, series_code: 1 }, 
