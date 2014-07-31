@@ -19,6 +19,14 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    elasticsearch (1.0.4)
+      elasticsearch-api (= 1.0.4)
+      elasticsearch-transport (= 1.0.4)
+    elasticsearch-api (1.0.4)
+      multi_json
+    elasticsearch-transport (1.0.4)
+      faraday
+      multi_json
     eventmachine (1.0.3)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -30,6 +38,7 @@ GEM
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
+    hashie (3.2.0)
     i18n (0.6.11)
     json (1.8.1)
     jwt (1.0.0)
@@ -85,6 +94,10 @@ GEM
     rspec-support (3.0.3)
     ruby-ole (1.2.11.7)
     rubyzip (1.1.6)
+    searchkick (0.8.0)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -123,6 +136,7 @@ DEPENDENCIES
   rake
   roo
   rspec
+  searchkick
   sinatra
   sinatra-reloader
   thin

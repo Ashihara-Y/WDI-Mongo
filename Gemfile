@@ -12,6 +12,8 @@ gem "yajl-ruby"
 gem "thin"
 gem "rake"
 
+gem "searchkick"
+
 group 'test' do
 	gem 'foreman'
 	gem 'rspec'

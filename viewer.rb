@@ -13,7 +13,7 @@ require 'matrix'
 
 Mongoid.load!("./mongoid.yml", :development)
 
-# class Downloaded_item
+# WDI model classes 
 class Wdi_fact
   include Mongoid::Document
 
@@ -26,7 +26,13 @@ class Wdi_fact
   has_one :Wdi_series
   embeds_one :Wdi_country
 
-  index({ country_code: 1, series_code: 1 }, { unique: true, name: "c_s_code_index", backgroud: true })
+  index({ country_code: 1, series_code: 1 }, { unique: true, name: "c_s_code_index", background: true })
+
+  index "wdi_country.country_name" => 1
+  index "wdi_country.region" => 1
+  index "wdi_country.income_group" => 1
+  index "wdi_country.international_membership" => 1
+  index "wdi_country.lending_category" => 1
 end
 
 class Wdi_series
@@ -101,12 +107,12 @@ class Wdi_country
 
   embedded_in :Wdi_facts
 
-  index({ country_code: 1, short_name: 1, table_name: 1, long_name: 1 }, { unique: true, name: "c_name_index" })
-  index({ country_code: 1, two_alpha_code: 1, wb2_code: 1 }, { unique: true, name: "c_code_index" })
-  index({ region: 1 }, { name: "region_index" })
-  index({ income_group: 1 }, { name: "income_index" })
-  index({ international_memberships: 1 }, { name: "membership_index" })
-  index({ lending_category: 1 }, { name: "lending_index" })
+  #index({ country_code: 1, short_name: 1, table_name: 1, long_name: 1 }, { unique: true, name: "c_name_index" })
+  #index({ country_code: 1, two_alpha_code: 1, wb2_code: 1 }, { unique: true, name: "c_code_index" })
+  #index({ region: 1 }, { name: "region_index" })
+  #index({ income_group: 1 }, { name: "income_index" })
+  #index({ international_memberships: 1 }, { name: "membership_index" })
+  #index({ lending_category: 1 }, { name: "lending_index" })
 end
 
 get '/' do
@@ -135,7 +141,7 @@ get '/detail' do
   res02 = Wdi_fact.where(country_code: "JPN").and(series_code: "PX.REX.REER").first
 
   @item = res01.content
-  @n_series = Series.count
-  @n = Downloaditem.count
+  @n_series = Wdi_series.count
+  @n = Wdi_fact.count
   erb :detail
 end
