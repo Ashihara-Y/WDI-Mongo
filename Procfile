@@ -1,1 +1,1 @@
-web: bundle exec ruby viewer.rb -p 8080
+web: bundle exec thin -a 0.0.0.0 -p 8080 start

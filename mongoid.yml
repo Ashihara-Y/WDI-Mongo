@@ -4,8 +4,8 @@ development:
       database: wdi_test
       hosts: 
         - ds055489-a0.mongolab.com:55489
-      username:  
-      password: 
+      username: owilde 
+      password: 1854owwb
  
 production:
   sessions:
@@ -13,5 +13,5 @@ production:
       database: wdi_test
       hosts: 
         - ds055489-a0.mongolab.com:55489
-      username: 
-      password: 
+      username: owilde
+      password: 1854owwb

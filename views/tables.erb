@@ -1,7 +1,8 @@
 <span>
   <div id="table"></div>
   <script>
-    var n_a = <%= @res %>;
+    var n_a = <%= @res.to_a %>;
+    for (var i = 0; i < n_a.length; i++) for (var j = 0; j < n_a[i].length; j++) {if (n_a[i][j]=='nil') n_a[i][j] = null;}
     var $container = $("#table");
     $container.handsontable({
       data: n_a,
