@@ -130,7 +130,7 @@ end
 get '/tableview' do
   res01 = Wdi_fact.where(country_code: "USA").and(series_code: "PX.REX.REER").first
   res02 = Wdi_fact.where(country_code: "JPN").and(series_code: "PX.REX.REER").first
-  @res = res01.content
+  @res = res02.content
   @n = Wdi_fact.count
   @n_series = Wdi_series.count
   erb :tables
@@ -140,7 +140,7 @@ get '/detail' do
   res01 = Wdi_fact.where(country_code: "USA").and(series_code: "PX.REX.REER").first
   res02 = Wdi_fact.where(country_code: "JPN").and(series_code: "PX.REX.REER").first
 
-  @item = res01.content
+  @item = res02.content
   @n_series = Wdi_series.count
   @n = Wdi_fact.count
   erb :detail

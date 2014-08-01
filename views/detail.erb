@@ -1,7 +1,7 @@
 <span>
   <script type="text/javascript">
     	$(function() {
-        var d = <%= @item.to_a %>
+        var d = <%= @item.to_a.map{|x| x.map{|y| if y==nil then y='nil' else y=y end }} %>
         for (var i = 0; i < d.length; i++) for (var j = 0; j < d[i].length; j++) {if (d[i][j]=='nil') d[i][j] = null;}
         $.plot("#placeholder", [d]);
       });
