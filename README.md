@@ -1,4 +1,4 @@
-This branch is for dev. on Model.
+This branch is for dev. on View.
 
 Things I'd like to cover:
 
