@@ -128,19 +128,45 @@ get '/index' do
 end
 
 get '/tableview' do
-  res01 = Wdi_fact.where(country_code: "USA").and(series_code: "PX.REX.REER").first
-  res02 = Wdi_fact.where(country_code: "JPN").and(series_code: "PX.REX.REER").first
-  @res = res02.content
+  res01 = Wdi_fact.
+          where(country_code: "USA").
+          and(series_code: "PX.REX.REER").
+          first.content
+          .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  res02 = Wdi_fact.
+          where(country_code: "JPN").
+          and(series_code: "PX.REX.REER").
+          first.content
+          .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  
+  @res = []
+  @res.push res01,res02
+  @res = @res.to_json
   @n = Wdi_fact.count
   @n_series = Wdi_series.count
   erb :tables
 end
 
 get '/detail' do
-  res01 = Wdi_fact.where(country_code: "USA").and(series_code: "PX.REX.REER").first
-  res02 = Wdi_fact.where(country_code: "JPN").and(series_code: "PX.REX.REER").first
+  res01 = Wdi_fact.
+          where(country_code: "USA").
+          and(series_code: "PX.REX.REER").
+          first.content
+          .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  res02 = Wdi_fact.
+          where(country_code: "JPN").
+          and(series_code: "PX.REX.REER").
+          first.content
+          .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  res03 = Wdi_fact.
+          where(country_code: "AUS").
+          and(series_code: "PX.REX.REER").
+          first.content
+          .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
 
-  @item = res02.content
+  @item = []
+  @item.push res01,res02,res03
+  @item.to_json
   @n_series = Wdi_series.count
   @n = Wdi_fact.count
   erb :detail

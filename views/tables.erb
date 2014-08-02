@@ -1,8 +1,10 @@
 <span>
   <div id="table"></div>
   <script>
-    var n_a = <%= @res.to_a.map{|x| x.map{|y| if y==nil then y='nil' else y=y end }} %>;
-    for (var i = 0; i < n_a.length; i++) for (var j = 0; j < n_a[i].length; j++) {if (n_a[i][j]=='nil') n_a[i][j] = null;}
+    var n_a = <%= @res %>;
+    for (var h = 0; h < n_a.length; h++) 
+          for (var i = 0; i < n_a[h].length; i++) 
+            for (var j = 0; j < n_a[h][i].length; j++) {if (n_a[h][i][j]=='null') {n_a[h][i][j] = null;} else {n_a[h][i][j] = n_a[h][i][j];} }    
     var $container = $("#table");
     $container.handsontable({
       data: n_a,

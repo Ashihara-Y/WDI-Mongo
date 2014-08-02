@@ -1,9 +1,18 @@
 <span>
   <script type="text/javascript">
     	$(function() {
-        var d = <%= @item.to_a.map{|x| x.map{|y| if y==nil then y='nil' else y=y end }} %>
-        for (var i = 0; i < d.length; i++) for (var j = 0; j < d[i].length; j++) {if (d[i][j]=='nil') d[i][j] = null;}
-        $.plot("#placeholder", [d]);
+        var d = <%= @item %>;
+        for (var h = 0; h < d.length; h++) 
+          for (var i = 0; i < d[h].length; i++) 
+            for (var j = 0; j < d[h][i].length; j++) {if (d[h][i][j]=='null') {d[h][i][j] = null;} else {d[h][i][j] = d[h][i][j];} }
+        console.log(d);
+        var options = {
+            series: {
+            lines: { show: true },
+            points: { show: true }
+          }
+        };        
+        $.plot("#placeholder", d, options);
       });
   </script>
   <div id="placeholder" style="width: 800px; height: 600px"></div>
