@@ -2,6 +2,7 @@
   <div id="table"></div>
   <script>
     var n_a = <%= @res %>;
+    console.log(n_a);
     for (var h = 0; h < n_a.length; h++) 
           for (var i = 0; i < n_a[h].length; i++) 
             for (var j = 0; j < n_a[h][i].length; j++) {if (n_a[h][i][j]=='null') {n_a[h][i][j] = null;} else {n_a[h][i][j] = n_a[h][i][j];} }    

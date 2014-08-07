@@ -139,8 +139,27 @@ get '/tableview' do
           first.content
           .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
   
-  @res = []
-  @res.push res01,res02
+  wrap = []
+  wrap.push res01,res02
+  n = wrap.length
+  l = wrap[0].length
+  k = 0
+  res = []
+  
+  while k < l do
+    base = wrap[0].shift
+    el =[base]
+    i =0
+    while i < n-1 do
+      apend = wrap[i+1].shift
+      base = el[0] | apend
+      el = [base]
+      i +=1
+    end
+    res.push el
+    k +=1
+  end
+  
   @res = @res.to_json
   @n = Wdi_fact.count
   @n_series = Wdi_series.count
