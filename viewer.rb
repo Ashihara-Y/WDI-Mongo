@@ -148,19 +148,20 @@ get '/tableview' do
 
     while k < l do
         base = wrap[0].shift
-        el =[base]
+        #el =[base]
         i =0
         while i < n-1 do
             apend = wrap[i+1].shift
-            base = el[0] | apend
-            el = [base]
+            #base = (el[0] | apend)
+            base = (base | apend)
+            #el = [base]
             i +=1
         end
-        res.push el
+        res.push base
         k +=1
     end
 
-    @res = @res.to_json
+    @res = res.to_json
     @n = Wdi_fact.count
     @n_series = Wdi_series.count
     erb :tables
