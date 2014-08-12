@@ -131,6 +131,7 @@ get '/tableview' do
           {:series_code =>"PX.REX.REER",:country_code =>"JPN"}, 
           {:series_code =>"PX.REX.REER",:country_code =>"USA"}
          ]
+  #reqs = [{:series_code =>"PX.REX.REER",:country_code =>"AUS"}]
   header = []
   wrap = []
   reqs.each {|req| header.push req[:series_code],req[:country_code]}
@@ -141,7 +142,7 @@ get '/tableview' do
           where(country_code: req[:country_code]).
           and(series_code: req[:series_code]).
           first.content.
-          map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+      map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
     wrap.push res
   }
 
@@ -173,26 +174,26 @@ end
 
 get '/detail' do
 
-    res01 = Wdi_fact.
-    where(country_code: "USA").
-    and(series_code: "PX.REX.REER").
-    first.content
-    .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  reqs = [{:series_code =>"PX.REX.REER",:country_code =>"AUS"}, 
+          {:series_code =>"PX.REX.REER",:country_code =>"JPN"}, 
+          {:series_code =>"PX.REX.REER",:country_code =>"USA"}
+         ]
+  #reqs = [{:series_code =>"PX.REX.REER",:country_code =>"AUS"}]
+  #header = []
+  wrap = []
+  reqs.each {|req| header.push req[:series_code],req[:country_code]}
+  #header = header.flatten.uniq
+  
+  reqs.each {|req| 
+    res = Wdi_fact.
+          where(country_code: req[:country_code]).
+          and(series_code: req[:series_code]).
+          first.content.
+      map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+    wrap.push res
+  }
 
-    res02 = Wdi_fact.
-    where(country_code: "JPN").
-    and(series_code: "PX.REX.REER").
-    first.content
-    .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
-
-    res03 = Wdi_fact.
-    where(country_code: "AUS").
-    and(series_code: "PX.REX.REER").
-    first.content
-    .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
-
-    @item = []
-    @item.push res01,res02,res03
+    @item = wrap
     @item.to_json
     @n_series = Wdi_series.count
     @n = Wdi_fact.count
