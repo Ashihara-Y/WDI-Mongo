@@ -127,44 +127,48 @@ end
 
 get '/tableview' do
     
-    res01 = Wdi_fact.
-    where(country_code: "USA").
-    and(series_code: "PX.REX.REER").
-    first.content
-    .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+  reqs = [{:series_code =>"PX.REX.REER",:country_code =>"AUS"}, 
+          {:series_code =>"PX.REX.REER",:country_code =>"JPN"}, 
+          {:series_code =>"PX.REX.REER",:country_code =>"USA"}
+         ]
+  header = []
+  wrap = []
+  reqs.each {|req| header.push req[:series_code],req[:country_code]}
+  header = header.flatten.uniq
+  
+  reqs.each {|req| 
+    res = Wdi_fact.
+          where(country_code: req[:country_code]).
+          and(series_code: req[:series_code]).
+          first.content.
+          map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
+    wrap.push res
+  }
 
-    res02 = Wdi_fact.
-    where(country_code: "JPN").
-    and(series_code: "PX.REX.REER").
-    first.content
-    .map{|x| if x[1]==nil then x[0]=x[0], x[1]='null' else x[0]=x[0], x[1]=x[1].to_f end }
-
-    wrap = []
-    wrap.push res01,res02
-    n = wrap.length
-    l = wrap[0].length
-    k = 0
-    res = []
+  n = wrap.length
+  l = wrap[0].length
+  k = 0
+  res = []
 
     while k < l do
         base = wrap[0].shift
-        #el =[base]
         i =0
         while i < n-1 do
-            apend = wrap[i+1].shift
-            #base = (el[0] | apend)
-            base = (base | apend)
-            #el = [base]
-            i +=1
+          apend = wrap[i+1].shift
+          apend_a = Array[apend.shift]
+          base = (base | apend_a)
+          base = base + apend 
+          i +=1
         end
         res.push base
         k +=1
     end
 
-    @res = res.to_json
-    @n = Wdi_fact.count
-    @n_series = Wdi_series.count
-    erb :tables
+  res.unshift header
+  @res = res.to_json
+  @n = Wdi_fact.count
+  @n_series = Wdi_series.count
+  erb :tables
 end
 
 get '/detail' do
